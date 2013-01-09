@@ -202,6 +202,12 @@ def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
     model = xija.ThermalModel('dpa', start=start, stop=stop,
                               model_spec=model_spec)
 
+    # set fetch to quiet if and only if verbose == 0
+    if opt.verbose == 0 :
+        xija.logger.setLevel(100)
+        
+
+
     times = np.array([states['tstart'], states['tstop']])
     model.comp['sim_z'].set_data(states['simpos'], times)
     model.comp['eclipse'].set_data(False)
