@@ -39,11 +39,22 @@ import Ska.Matplotlib
 import xija
 
 MSID = dict(dpa='1DPAMZT')
+
+# This is the Yellow High IPCL limit.
 YELLOW = dict(dpa=35.0)
-MARGIN = dict(dpa=2.5)
-VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.5),
+
+# This is the difference between the Yellow High IPCL limit and 
+# the Planning Limit. So the Planning Limit is YELLOW - MARGIN
+#
+# 12/5/13 - This value was changed from 2.5 to 2.0 to reflect the new 
+# 1DPAMZT planning limit of 33 degrees C
+MARGIN = dict(dpa=2.0)
+
+# 12/5/13 - Likewise the 1DPAMZT validation limits were reduced to 2.0 
+# from 2.5 for the 1% and 99% quantiles
+VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0),
                                  (50, 1.0),
-                                 (99, 2.5)],
+                                 (99, 2.0)],
                      'PITCH': [(1, 3.0),
                                   (99, 3.0)],
                      'TSCPOS': [(1, 2.5),
@@ -131,14 +142,19 @@ def main(opt):
                 errors=[],
                 dpa_limit=YELLOW['dpa'] - MARGIN['dpa'],
                 )
+
+
     logger.info('##############################'
                 '#######################################')
     logger.info('# dpa_check.py run at %s by %s'
                 % (proc['run_time'], proc['run_user']))
     logger.info('# dpa_check version = {}'.format(VERSION))
+    logger.info('# PROC DPA LIMIT IS: %d' % (proc['dpa_limit']) )
     logger.info('# model_spec file = %s' % os.path.abspath(opt.model_spec))
     logger.info('###############################'
                 '######################################\n')
+
+
 
     logger.info('Command line options:\n%s\n' % pformat(opt.__dict__))
 
@@ -497,7 +513,7 @@ def write_index_rst(opt, proc, plots_validation, valid_viols=None,
         django.conf.settings.configure()
     except RuntimeError, msg:
         print msg
-
+    
     outfile = os.path.join(opt.outdir, 'index.rst')
     logger.info('Writing report file %s' % outfile)
     django_context = django.template.Context(
@@ -528,6 +544,7 @@ def make_viols(opt, states, times, temps):
     for msid in MSID:
         temp = temps[msid]
         plan_limit = YELLOW[msid] - MARGIN[msid]
+
         bad = np.concatenate(([False],
                              temp >= plan_limit,
                              [False]))

@@ -16,7 +16,7 @@ Summary
 ====================  =============================================
 Date start            {{proc.datestart}}
 Date stop             {{proc.datestop}}
-1DPAMZT status        {%if viols.dpa%}:red:`NOT OK`{% else %}OK{% endif%} (limit = {{proc.dpa_limit|floatformat:1}} C)
+1DPAMZT status        {%if viols.dpa%}:red:`NOT OK`{% else %}OK{%endif%} (Planning Limit = {{proc.dpa_limit|floatformat:1}} C)
 {% if opt.loaddir %}
 Load directory        {{opt.loaddir}}
 {% endif %}
