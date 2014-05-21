@@ -58,12 +58,9 @@ MARGIN = dict(dpa=3.0)
 
 # 12/5/13 - Likewise the 1DPAMZT validation limits were reduced to 2.0 
 #           from 2.5 for the 1% and 99% quantiles
-# 05/20/14 - 1DPAMZT validation limits were increased to 3.0 for the
-#            staged increment adjustment of the planning limit to it's
-#            nominal value of 2 after the change in Yellow High  to 37.5
 VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0),
                                  (50, 1.0),
-                                 (99, 3.0)],
+                                 (99, 2.0)],
                      'PITCH': [(1, 3.0),
                                   (99, 3.0)],
                      'TSCPOS': [(1, 2.5),
