@@ -41,17 +41,23 @@ import xija
 MSID = dict(dpa='1DPAMZT')
 
 # This is the Yellow High IPCL limit.
-YELLOW = dict(dpa=35.0)
+# 05/1914 - changed from 35.0 to 37.5
+YELLOW = dict(dpa=37.5)
 
 # This is the difference between the Yellow High IPCL limit and 
 # the Planning Limit. So the Planning Limit is YELLOW - MARGIN
 #
 # 12/5/13 - This value was changed from 2.5 to 2.0 to reflect the new 
 # 1DPAMZT planning limit of 33 degrees C
-MARGIN = dict(dpa=2.0)
+# 05/19/14 this is changed from 2.0, to 3.0.  2 degress for the normal
+#          padding for model error and an additional degree because
+#          the total change is being done in increments. We will back
+#          this off from 3 degrees to two after a few months trial 
+#          testing.  So for now the planning limit will be 34.5 deg. C.
+MARGIN = dict(dpa=3.0)
 
 # 12/5/13 - Likewise the 1DPAMZT validation limits were reduced to 2.0 
-# from 2.5 for the 1% and 99% quantiles
+#           from 2.5 for the 1% and 99% quantiles
 VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0),
                                  (50, 1.0),
                                  (99, 2.0)],
@@ -149,7 +155,7 @@ def main(opt):
     logger.info('# dpa_check.py run at %s by %s'
                 % (proc['run_time'], proc['run_user']))
     logger.info('# dpa_check version = {}'.format(VERSION))
-    logger.info('# PROC DPA LIMIT IS: %d' % (proc['dpa_limit']) )
+    logger.info('# NEW PROC DPA LIMIT IS: %d' % (proc['dpa_limit']) )
     logger.info('# model_spec file = %s' % os.path.abspath(opt.model_spec))
     logger.info('###############################'
                 '######################################\n')
@@ -515,7 +521,7 @@ def write_index_rst(opt, proc, plots_validation, valid_viols=None,
         print msg
     
     outfile = os.path.join(opt.outdir, 'index.rst')
-    logger.info('Writing report file %s' % outfile)
+    logger.info('\nWriting report file %s ' % outfile)
     django_context = django.template.Context(
         {'opt': opt,
          'plots': plots,
