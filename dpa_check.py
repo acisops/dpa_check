@@ -41,7 +41,7 @@ import xija
 MSID = dict(dpa='1DPAMZT')
 
 # This is the Yellow High IPCL limit.
-# 05/1914 - changed from 35.0 to 37.5
+# 05/2014 - changed from 35.0 to 37.5
 YELLOW = dict(dpa=37.5)
 
 # This is the difference between the Yellow High IPCL limit and 
@@ -54,7 +54,9 @@ YELLOW = dict(dpa=37.5)
 #          the total change is being done in increments. We will back
 #          this off from 3 degrees to two after a few months trial 
 #          testing.  So for now the planning limit will be 34.5 deg. C.
-MARGIN = dict(dpa=3.0)
+# 09/19/14 - Set MARGIN to 2.0 so that the Planning Limit is now 
+#            35.5 deg. C
+MARGIN = dict(dpa=2.0)
 
 # 12/5/13 - Likewise the 1DPAMZT validation limits were reduced to 2.0 
 #           from 2.5 for the 1% and 99% quantiles
