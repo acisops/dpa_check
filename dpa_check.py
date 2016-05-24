@@ -13,11 +13,8 @@ plots comparing predicted values to telemetry for the previous three weeks.
 import sys
 import os
 import logging
-
 import numpy as np
-import Ska.Sun
 
-import Chandra.cmd_states as cmd_states
 # Matplotlib setup
 # Use Agg backend for command-line (non-interactive) operation
 import matplotlib
@@ -26,7 +23,7 @@ if __name__ == '__main__':
 
 import xija
 
-from model_check import ModelCheck
+from model_check import ModelCheck, calc_off_nom_rolls
 
 MSID = dict(dpa='1DPAMZT')
 
@@ -124,14 +121,6 @@ def get_options():
 
     opt, args = parser.parse_args()
     return opt, args
-
-def calc_off_nom_rolls(states):
-    off_nom_rolls = []
-    for state in states:
-        att = [state[x] for x in ['q1', 'q2', 'q3', 'q4']]
-        time = (state['tstart'] + state['tstop']) / 2
-        off_nom_rolls.append(Ska.Sun.off_nominal_roll(att, time))
-    return np.array(off_nom_rolls)
 
 def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
     model = xija.ThermalModel('dpa', start=start, stop=stop,
