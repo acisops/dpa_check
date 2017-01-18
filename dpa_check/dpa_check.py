@@ -24,7 +24,7 @@ from acis_thermal_check.main import ACISThermalCheck
 from acis_thermal_check.utils import calc_off_nom_rolls, get_options
 import os
 
-script_path = os.path.abspath(os.path.dirname(__file__))
+model_path = os.path.abspath(os.path.dirname(__file__))
 
 MSID = dict(dpa='1DPAMZT')
 # This is the Yellow High IPCL limit.
