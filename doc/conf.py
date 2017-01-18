@@ -12,6 +12,7 @@
 # serve to show the default.
 
 import sys, os
+import dpa_check
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -37,15 +38,15 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'dpa'
-copyright = u'2011, Tom Aldcroft'
+project = u'1DPAMZT Thermal Model Predictions and Testing'
+copyright = u'2016, CXC ACIS Operations Team'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = open('../VERSION').read().strip()
+version = dpa_check.__version__
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -173,7 +174,7 @@ htmlhelp_basename = 'dpadoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'dpa.tex', u'DPA Documentation',
-   u'Tom Aldcroft', 'manual'),
+   u'CXC ACIS Operations', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
