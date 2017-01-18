@@ -75,7 +75,7 @@ dpa_check = ACISThermalCheck("1dpamzt", "dpa", MSID,
                              HIST_LIMIT, calc_model)
 
 def main():
-    opt, args = get_options("1DPAMZT", "dpa", script_path)
+    opt, args = get_options("1DPAMZT", "dpa", model_path)
     try:
         dpa_check.driver(opt)
     except Exception as msg:
