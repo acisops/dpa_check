@@ -75,11 +75,11 @@ dpa_check = ACISThermalCheck("1dpamzt", "dpa", MSID,
                              HIST_LIMIT, calc_model)
 
 def main():
-    opt, args = get_options("1DPAMZT", "dpa", model_path)
+    args = get_options("1DPAMZT", "dpa", model_path)
     try:
-        dpa_check.driver(opt)
+        dpa_check.driver(args)
     except Exception as msg:
-        if opt.traceback:
+        if args.traceback:
             raise
         else:
             print("ERROR:", msg)
