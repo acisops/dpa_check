@@ -20,16 +20,22 @@ matplotlib.use('Agg')
 import numpy as np
 import xija
 import sys
-from acis_thermal_check.main import ACISThermalCheck
-from acis_thermal_check.utils import calc_off_nom_rolls, get_options
+from acis_thermal_check import \
+    ACISThermalCheck, \
+    calc_off_nom_rolls, \
+    get_options, \
+    state_builders, \
+    get_acis_limits
 import os
 
 model_path = os.path.abspath(os.path.dirname(__file__))
 
+yellow_hi, red_hi = get_acis_limits("1dpamzt")
+
 MSID = dict(dpa='1DPAMZT')
 # This is the Yellow High IPCL limit.
 # 05/2014 - changed from 35.0 to 37.5
-YELLOW = dict(dpa=37.5)
+YELLOW = dict(dpa=yellow_hi)
 # This is the difference between the Yellow High IPCL limit and 
 # the Planning Limit. So the Planning Limit is YELLOW - MARGIN
 #
@@ -70,12 +76,12 @@ def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
     model.calc()
     return model
 
-dpa_check = ACISThermalCheck("1dpamzt", "dpa", MSID,
-                             YELLOW, MARGIN, VALIDATION_LIMITS,
-                             HIST_LIMIT, calc_model)
-
 def main():
     args = get_options("1DPAMZT", "dpa", model_path)
+    dpa_check = ACISThermalCheck("1dpamzt", "dpa",
+                                 state_builders[args.state_builder], MSID,
+                                 YELLOW, MARGIN, VALIDATION_LIMITS,
+                                 HIST_LIMIT, calc_model)
     try:
         dpa_check.driver(args)
     except Exception as msg:
