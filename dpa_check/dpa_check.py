@@ -77,7 +77,7 @@ def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
     return model
 
 def main():
-    args = get_options("1DPAMZT", "dpa", model_path)
+    args = get_options("dpa", model_path)
     dpa_check = ACISThermalCheck("1dpamzt", "dpa",
                                  state_builders[args.state_builder], MSID,
                                  YELLOW, MARGIN, VALIDATION_LIMITS,
