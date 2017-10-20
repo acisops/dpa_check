@@ -32,10 +32,10 @@ model_path = os.path.abspath(os.path.dirname(__file__))
 
 yellow_hi, red_hi = get_acis_limits("1dpamzt")
 
-MSID = dict(dpa='1DPAMZT')
+MSID = {"dpa": '1DPAMZT'}
 # This is the Yellow High IPCL limit.
 # 05/2014 - changed from 35.0 to 37.5
-YELLOW = dict(dpa=yellow_hi)
+YELLOW = {"dpa": yellow_hi}
 # This is the difference between the Yellow High IPCL limit and 
 # the Planning Limit. So the Planning Limit is YELLOW - MARGIN
 #
@@ -48,17 +48,14 @@ YELLOW = dict(dpa=yellow_hi)
 #          testing.  So for now the planning limit will be 34.5 deg. C.
 # 09/19/14 - Set MARGIN to 2.0 so that the Planning Limit is now 
 #            35.5 deg. C
-MARGIN = dict(dpa=2.0)
+MARGIN = {"dpa": 2.0}
 # 12/5/13 - Likewise the 1DPAMZT validation limits were reduced to 2.0 
 #           from 2.5 for the 1% and 99% quantiles
-VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0),
-                                 (50, 1.0),
-                                 (99, 2.0)],
-                     'PITCH': [(1, 3.0),
-                                  (99, 3.0)],
-                     'TSCPOS': [(1, 2.5),
-                                (99, 2.5)]
+VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0), (50, 1.0), (99, 2.0)],
+                     'PITCH': [(1, 3.0), (99, 3.0)],
+                     'TSCPOS': [(1, 2.5), (99, 2.5)]
                      }
+
 HIST_LIMIT = [20.]
 
 def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
