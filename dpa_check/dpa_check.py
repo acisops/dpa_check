@@ -24,7 +24,7 @@ from acis_thermal_check import \
     ACISThermalCheck, \
     calc_off_nom_rolls, \
     get_options, \
-    state_builders, \
+    make_state_builder, \
     get_acis_limits
 import os
 
@@ -75,12 +75,12 @@ def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
 
 def main():
     args = get_options("dpa", model_path)
-    dpa_check = ACISThermalCheck("1dpamzt", "dpa",
-                                 state_builders[args.state_builder], MSID,
-                                 YELLOW, MARGIN, VALIDATION_LIMITS,
+    state_builder = make_state_builder(args.state_builder, args)
+    dpa_check = ACISThermalCheck("1dpamzt", "dpa", MSID, YELLOW,
+                                 MARGIN, VALIDATION_LIMITS,
                                  HIST_LIMIT, calc_model)
     try:
-        dpa_check.driver(args)
+        dpa_check.driver(args, state_builder)
     except Exception as msg:
         if args.traceback:
             raise
