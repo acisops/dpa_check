@@ -36,7 +36,8 @@ VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0), (50, 1.0), (99, 2.0)],
 
 HIST_LIMIT = [20.]
 
-def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None):
+def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None,
+               dh_heater=None, dh_heater_times=None):
     model = xija.ThermalModel('dpa', start=start, stop=stop,
                               model_spec=model_spec)
     times = np.array([states['tstart'], states['tstop']])
