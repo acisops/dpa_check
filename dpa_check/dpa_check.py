@@ -58,7 +58,7 @@ def main():
                                  VALIDATION_LIMITS, HIST_LIMIT,
                                  calc_model, args)
     try:
-        dpa_check.driver()
+        dpa_check.run()
     except Exception as msg:
         if args.traceback:
             raise
