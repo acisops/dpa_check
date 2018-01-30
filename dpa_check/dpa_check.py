@@ -28,7 +28,6 @@ import os
 
 model_path = os.path.abspath(os.path.dirname(__file__))
 
-MSID = {"dpa": '1DPAMZT'}
 VALIDATION_LIMITS = {'1DPAMZT': [(1, 2.0), (50, 1.0), (99, 2.0)],
                      'PITCH': [(1, 3.0), (99, 3.0)],
                      'TSCPOS': [(1, 2.5), (99, 2.5)]
@@ -54,9 +53,8 @@ def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None,
 
 def main():
     args = get_options("dpa", model_path)
-    dpa_check = ACISThermalCheck("1dpamzt", "dpa", MSID,
-                                 VALIDATION_LIMITS, HIST_LIMIT,
-                                 calc_model, args)
+    dpa_check = ACISThermalCheck("1dpamzt", "dpa", VALIDATION_LIMITS,
+                                 HIST_LIMIT, calc_model, args)
     try:
         dpa_check.run()
     except Exception as msg:
