@@ -7,6 +7,5 @@ dpa_rt = RegressionTester("1dpamzt", "dpa", model_path, VALIDATION_LIMITS,
                           HIST_LIMIT, calc_model)
 
 def test_dpa_loads(answer_store):
-    dpa_rt.run_test_arrays([VALIDATION_LIMITS, HIST_LIMIT, calc_model],
-                           answer_store)
+    dpa_rt.run_test_arrays(answer_store)
 
