@@ -6,6 +6,6 @@ from acis_thermal_check.regression_testing import \
 dpa_rt = RegressionTester("1dpamzt", "dpa", model_path, VALIDATION_LIMITS,
                           HIST_LIMIT, calc_model)
 
-def test_dpa_loads(answer_store):
-    dpa_rt.run_test_arrays(answer_store)
+def test_dpa_loads(answer_store, **kwargs):
+    dpa_rt.run_test_arrays(answer_store, **kwargs)
 
