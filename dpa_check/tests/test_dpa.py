@@ -24,12 +24,12 @@ def test_prediction(answer_store, load):
 # Validation tests
 
 @pytest.mark.parametrize('load', all_loads)
-def test_normal_validation(answer_store, load):
+def test_validation(answer_store, load):
     dpa_rt.run_test("validation", answer_store, load)
 
 # Image tests
 
 @pytest.mark.parametrize('load', all_loads)
 @pytest.mark.parametrize('image', image_list)
-def test_normal_images(answer_store, load, image):
+def test_images(answer_store, load, image):
     dpa_rt.run_test("image", answer_store, load, image=image)
