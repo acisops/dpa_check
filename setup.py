@@ -2,6 +2,11 @@
 from setuptools import setup
 from dpa_check import __version__
 
+try:
+    from testr.setup_helper import cmdclass
+except ImportError:
+    cmdclass = {}
+
 entry_points = {'console_scripts': 'dpa_check = dpa_check.dpa_check:main'}
 
 url = 'https://github.com/acisops/dpa_check/tarball/{}'.format(__version__)
@@ -22,4 +27,7 @@ setup(name='dpa_check',
           'Programming Language :: Python :: 3.5',
       ],
       entry_points=entry_points,
+      zip_safe=False,
+      tests_require=["pytest"],
+      cmdclass=cmdclass,
       )
