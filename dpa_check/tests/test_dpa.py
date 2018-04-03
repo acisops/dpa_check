@@ -1,17 +1,12 @@
 from ..dpa_check import VALIDATION_LIMITS, \
     HIST_LIMIT, calc_model, model_path
 from acis_thermal_check.regression_testing import \
-    RegressionTester, test_loads, all_loads
+    RegressionTester, all_loads
 import pytest
 
 dpa_rt = RegressionTester("1dpamzt", "dpa", model_path, VALIDATION_LIMITS,
                           HIST_LIMIT, calc_model)
-
-for load in test_loads["normal"]:
-    dpa_rt.run_model(load)
-
-for load in test_loads["interrupt"]:
-    dpa_rt.run_model(load, interrupt=True)
+dpa_rt.run_models()
 
 # Prediction tests
 
