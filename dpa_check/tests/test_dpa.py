@@ -13,8 +13,6 @@ for load in test_loads["normal"]:
 for load in test_loads["interrupt"]:
     dpa_rt.run_model(load, interrupt=True)
 
-image_list = dpa_rt.get_image_list()
-
 # Prediction tests
 
 @pytest.mark.parametrize('load', all_loads)
@@ -26,10 +24,3 @@ def test_prediction(answer_store, load):
 @pytest.mark.parametrize('load', all_loads)
 def test_validation(answer_store, load):
     dpa_rt.run_test("validation", answer_store, load)
-
-# Image tests
-
-@pytest.mark.parametrize('load', all_loads)
-@pytest.mark.parametrize('image', image_list)
-def test_images(answer_store, load, image):
-    dpa_rt.run_test("image", answer_store, load, image=image)
