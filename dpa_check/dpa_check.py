@@ -43,6 +43,23 @@ def calc_model(model_spec, states, start, stop, T_dpa=None, T_dpa_times=None,
     model.comp['sim_z'].set_data(states['simpos'], times)
     model.comp['eclipse'].set_data(False)
     model.comp['1dpamzt'].set_data(T_dpa, T_dpa_times)
+
+    # Update to initialize the dpa0 pseudo-node. If 1dpamzt
+    # has an initial value (T_dpa) - which it does at
+    # prediction time (gets it from state0), then T_dpa0 
+    # is set to that.  If we are running the validation,
+    # T_dpa is set to None so we use the dvals in model.comp
+    #
+    # NOTE: If you change the name of the dpa0 pseudo node you
+    #       have to edit the new name into the if statement
+    #       below.
+    if 'dpa0' in model.comp:
+        if T_dpa is None:
+            T_dpa0 = model.comp["1dpamzt"].dvals
+        else:
+            T_dpa0 = T_dpa
+        model.comp['dpa0'].set_data(T_dpa0, T_dpa_times)
+
     model.comp['roll'].set_data(calc_off_nom_rolls(states), times)
     for name in ('ccd_count', 'fep_count', 'vid_board', 'clocking', 'pitch'):
         model.comp[name].set_data(states[name], times)
