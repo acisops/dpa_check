@@ -31,8 +31,7 @@ dpa_rt.run_models(state_builder='sql')
 
 @pytest.mark.parametrize('load', all_loads)
 def test_prediction_sql(answer_store, load):
-    dpa_rt.run_test("prediction", answer_store, load,
-                    state_builder='sql')
+    dpa_rt.run_test("prediction", answer_store, load)
 
 # Validation tests
 
