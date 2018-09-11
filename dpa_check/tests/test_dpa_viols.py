@@ -9,5 +9,5 @@ dpa_rt = RegressionTester("1dpamzt", "dpa", model_path, VALIDATION_LIMITS,
 
 def test_JUL3018_viols():
     model_spec = os.path.join(os.path.dirname(__file__),
-                              "JUL3018_model_spec.json")
+                              "JUL3018_dpa.json")
     dpa_rt.check_violation_reporting("JUL3018", model_spec)
