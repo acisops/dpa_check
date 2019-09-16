@@ -37,7 +37,8 @@ class DPACheck(ACISThermalCheck):
                                        hist_limit)
 
 
-def main(args):
+def main():
+    args = get_options("dpa", model_path)
     dpa_check = DPACheck()
     try:
         dpa_check.run(args)
@@ -50,5 +51,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    args = get_options("dpa", model_path)
-    main(args)
+    main()
