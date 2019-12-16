@@ -1,0 +1,59 @@
+
+Change Description
+==================
+
+The previous update to the 1DPAMZT model focused on calibrating for
+the Summer, 2019 cold season. It was stated that a new calibration
+would have to be completed for the Fall hot season.  This
+re-calibration addresses the variations across hot and cold seasons by
+incorporating a different method of calculating solar heat effects due
+to Earth's orbit.  This alleviated the need for seasonal
+re-calibrations.
+
+A general re-calibration was accomplished as well.
+
+
+Files Changed:
+============== 
+
+    __init__.py
+
+    dpa_model_spec.json
+
+    Release_Notes_V2.5.0.txt (this document)
+
+
+
+
+Testing:
+========
+
+The change was tested on the following loads:
+
+DEC0919
+DEC1619
+
+
+Interface impacts
+=================
+
+None.
+
+No new components added to the model. Only changes are parameter changes.
+
+
+
+Review
+====== 
+
+Reviewed by ACIS Ops.
+
+Presented to and approved by TWG.
+
+
+
+Deployment Plan
+===============
+
+Deploy after the first segment of the load presently being reviewed, 
+starts execution.

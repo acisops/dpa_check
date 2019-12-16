@@ -136,7 +136,7 @@
             "name": "clocking"
         },
         {
-            "class_name": "SolarHeatHrcOpts",
+            "class_name": "SolarHeatHrcMult",
             "init_args": [
                 "dpa0"
             ],
@@ -210,8 +210,10 @@
                 "fep_count": "fep_count",
                 "pow_states": [
                     "0xxx",
-                    "1xxx",
-                    "2xxx",
+                    "1xx0",
+                    "1xx1",
+                    "2xx0",
+                    "2xx1",
                     "3xx0",
                     "3xx1",
                     "4xx0",
@@ -234,20 +236,26 @@
             "name": "prop_heat__dpa0"
         }
     ],
-    "datestart": "2016:151:12:03:11.816",
-    "datestop": "2019:154:23:50:06.816",
+    "datestart": "2018:312:12:03:58.816",
+    "datestop": "2019:343:23:53:34.816",
     "dt": 328.0,
     "gui_config": {
-        "filename": "/home/gregg/THERMAL-MODELS/DPA-FITS/2019_JAN_HIGH_PITCH_FIT/MAY_31_2019/May_31_STEP_7.json",
+        "filename": "/home/gregg/THERMAL-MODELS/DPA-FITS/FALL_2019_RECAL/NOV_5/DEC_9_STEP_1.json",
+        "limits": {
+            "caution_hi": 39.5,
+            "planning_hi": 37.5
+        },
+        "msid": "1dpamzt",
         "plot_names": [
-            "1dpamzt data__time"
+            "1dpamzt data__time",
+            "solarheat__dpa0 solar_heat__pitch"
         ],
         "set_data_vals": {
             "dpa0": 20
         },
         "size": [
             1556,
-            1029
+            1028
         ]
     },
     "mval_names": [],
@@ -531,7 +539,7 @@
             "max": 1.0,
             "min": -1.0,
             "name": "ampl",
-            "val": 0.05246678962693188
+            "val": 0.03371678962693188
         },
         {
             "comp_name": "solarheat__dpa0",
@@ -627,20 +635,40 @@
             "comp_name": "dpa_power",
             "fmt": "{:.4g}",
             "frozen": true,
-            "full_name": "dpa_power__pow_1xxx",
+            "full_name": "dpa_power__pow_1xx0",
             "max": 60,
             "min": 15,
-            "name": "pow_1xxx",
+            "name": "pow_1xx0",
             "val": 27.207142999370895
         },
         {
             "comp_name": "dpa_power",
             "fmt": "{:.4g}",
             "frozen": true,
-            "full_name": "dpa_power__pow_2xxx",
+            "full_name": "dpa_power__pow_1xx1",
+            "max": 60,
+            "min": 15,
+            "name": "pow_1xx1",
+            "val": 27.207142999370895
+        },
+        {
+            "comp_name": "dpa_power",
+            "fmt": "{:.4g}",
+            "frozen": true,
+            "full_name": "dpa_power__pow_2xx0",
             "max": 80,
             "min": 20,
-            "name": "pow_2xxx",
+            "name": "pow_2xx0",
+            "val": 38.74295469570052
+        },
+        {
+            "comp_name": "dpa_power",
+            "fmt": "{:.4g}",
+            "frozen": true,
+            "full_name": "dpa_power__pow_2xx1",
+            "max": 80,
+            "min": 20,
+            "name": "pow_2xx1",
             "val": 38.74295469570052
         },
         {
@@ -681,7 +709,7 @@
             "max": 120,
             "min": 20,
             "name": "pow_4xx1",
-            "val": 59.05
+            "val": 60.5
         },
         {
             "comp_name": "dpa_power",
