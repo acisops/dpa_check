@@ -55,5 +55,5 @@ Presented to and approved by TWG.
 Deployment Plan
 ===============
 
-Deploy after the first segment of the load presently being reviewed, 
-starts execution.
+Deploy after a new FOT Tools release has FDB approval. Will be running
+an ACIS Ops version off to the side.
