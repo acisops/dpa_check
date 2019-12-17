@@ -39,7 +39,15 @@ Interface impacts
 
 None.
 
-No new components added to the model. Only changes are parameter changes.
+
+Summary of json file changes
+============================
+No new components added to the model. 
+
+There are parameter changes.
+
+A limits dictionary, specifying caution high and planning hi limits,
+was added to the "gui_config" section.
 
 
 
