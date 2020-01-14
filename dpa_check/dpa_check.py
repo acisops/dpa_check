@@ -25,6 +25,7 @@ import os
 
 model_path = os.path.abspath(os.path.dirname(__file__))
 
+from . import __version__
 
 class DPACheck(ACISThermalCheck):
     def __init__(self):
@@ -35,6 +36,25 @@ class DPACheck(ACISThermalCheck):
         hist_limit = [20.0]
         super(DPACheck, self).__init__("1dpamzt", "dpa", valid_limits,
                                        hist_limit)
+
+    def _calc_model_supp(self, model, state_times, states, ephem, state0):
+        """
+        Update to initialize the dpa0 pseudo-node. If 1dpamzt
+        has an initial value (T_dpa) - which it does at
+        prediction time (gets it from state0), then T_dpa0 
+        is set to that.  If we are running the validation,
+        T_dpa is set to None so we use the dvals in model.comp
+
+        NOTE: If you change the name of the dpa0 pseudo node you
+              have to edit the new name into the if statement
+              below.
+        """
+        if 'dpa0' in model.comp:
+            if state0 is None:
+                T_dpa0 = model.comp["1dpamzt"].dvals
+            else:
+                T_dpa0 = state0["1dpamzt"]
+            model.comp['dpa0'].set_data(T_dpa0, model.times)
 
 
 def main():
