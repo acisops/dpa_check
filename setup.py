@@ -8,7 +8,8 @@ url = 'https://github.com/acisops/dpa_check/tarball/{}'.format(__version__)
 
 setup(name='dpa_check',
       packages=["dpa_check"],
-      version=__version__,
+      use_scm_version=True,
+      setup_requires=['setuptools_scm', 'setuptools_scm_git_archive'],
       description='ACIS Thermal Model for 1DPAMZT',
       author='John ZuHone',
       author_email='jzuhone@gmail.com',
