@@ -5,6 +5,10 @@ import pytest
 
 dpa_rt = RegressionTester(DPACheck, model_path)
 
+# ACIS state builder tests
+
+dpa_rt.run_models(state_builder='acis')
+
 # Prediction tests
 
 
