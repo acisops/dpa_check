@@ -25,7 +25,6 @@ import os
 
 model_path = os.path.abspath(os.path.dirname(__file__))
 
-from . import __version__
 
 class DPACheck(ACISThermalCheck):
     def __init__(self):
