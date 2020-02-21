@@ -3,7 +3,7 @@ from acis_thermal_check.regression_testing import \
     RegressionTester, all_loads
 import pytest
 
-dea_rt = RegressionTester(DPACheck, model_path)
+dpa_rt = RegressionTester(DPACheck, model_path)
 
 # Prediction tests
 
