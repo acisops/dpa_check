@@ -5,7 +5,7 @@ import pytest
 
 dpa_rt = RegressionTester(DPACheck, model_path, "dpa_test_spec.json")
 
-# ACIS state builder tests
+# SQL state builder tests
 
 dpa_rt.run_models(state_builder='sql')
 
