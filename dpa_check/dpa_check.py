@@ -35,6 +35,42 @@ class DPACheck(ACISThermalCheck):
         super(DPACheck, self).__init__("1dpamzt", "dpa", valid_limits,
                                        hist_limit)
 
+    def custom_prediction_plots(self, plots):
+        plots[self.name]['ax'].axhline(self.zero_feps_limit, linestyle='--',
+                                       color='dodgerblue', linewidth=2.0)
+
+    def custom_prediction_viols(self, times, temp, viols, load_start):
+        """
+        Custom handling of limit violations. 
+
+        Parameters
+        ----------
+        times : NumPy array
+            The times for the predicted temperatures
+        temp : NumPy array
+            The predicted temperatures
+        viols : dict
+            Dictionary of violations information to add to
+        load_start : float
+            The start time of the load, used so that we only report
+            violations for times later than this time for the model
+            run.
+        """
+        # Only check this violation when all FEPs are off
+        mask = self.predict_model.comp['fep_count'].dvals == 0
+        zf_viols = self._make_prediction_viols(times, temp, load_start,
+                                               self.zero_feps_limit,
+                                               "zero-feps", "min",
+                                               mask=mask)
+        viols["zero_feps"] = {"name": f"Zero FEPs ({self.zero_feps_limit} C)",
+                              "type": "Min",
+                              "values": zf_viols}
+
+    def custom_validation_plots(self, plots):
+        plots[0]['lines']['ax'].axhline(self.zero_feps_limit, linestyle='--',
+                                        color='dodgerblue', zorder=-8, 
+                                        linewidth=2)
+
     def _calc_model_supp(self, model, state_times, states, ephem, state0):
         """
         Update to initialize the dpa0 pseudo-node. If 1dpamzt
