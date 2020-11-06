@@ -37,7 +37,8 @@ class DPACheck(ACISThermalCheck):
 
     def custom_prediction_plots(self, plots):
         plots[self.name]['ax'].axhline(self.zero_feps_limit, linestyle='--',
-                                       color='dodgerblue', linewidth=2.0)
+                                       color='dodgerblue', label="Zero FEPs",
+                                       linewidth=2.0)
 
     def custom_prediction_viols(self, times, temp, viols, load_start):
         """
