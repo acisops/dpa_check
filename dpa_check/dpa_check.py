@@ -69,8 +69,8 @@ class DPACheck(ACISThermalCheck):
 
     def custom_validation_plots(self, plots):
         plots[0]['lines']['ax'].axhline(self.zero_feps_limit, linestyle='--',
-                                        color='dodgerblue', zorder=-8, 
-                                        linewidth=2)
+                                        color='dodgerblue', zorder=-8,
+                                        linewidth=2, label="Zero FEPs")
 
     def _calc_model_supp(self, model, state_times, states, ephem, state0):
         """
