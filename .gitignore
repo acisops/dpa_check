@@ -3,3 +3,6 @@ dist
 *.pyc
 dpa_check.egg-info
 doc/_build
+dpa_check/tests/answers/*/*[.png, .csv, .css]
+dpa_check/tests/answers/*/index.*
+dpa_check/tests/answers/*/run.dat
