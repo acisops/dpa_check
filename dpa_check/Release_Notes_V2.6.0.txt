@@ -1,0 +1,67 @@
+
+Change Description
+==================
+
+Over time, the 1DPAMZT thermal model developed a tendency to over-predict the
+temperatures at the hot end.  The primary goal of this re-calibration was to
+eliminate those over-predictions.
+
+In addition, the coefficient for the 2xx0 case was poor due to a very limited 
+number of 2 chip observations (76 since 2019:001).  Consequently when analyses 
+were carried out in order to assess the settling temperatures for various 
+numbers of chips powered on, but not clocking, there was no discernible difference
+between the 2 chip and 3 chip case. The value for the 2xx0 parameter was set
+by hand to a more reasonable value (slides 28, 29, 30 and 31 of the TWG presentation).
+
+A general re-calibration was accomplished as well.
+
+
+Files Changed or added:
+======================= 
+
+    dpa_model_spec.json
+
+    Release_Notes_V2.6.0.txt (this document)
+
+    2021_1DPAMZT_Calibration_TWG.pdf
+       - TWG Presentation
+
+https://github.com/acisops/dpa_check/pull/30
+
+
+Testing:
+========
+
+The changes were tested with the full regression test
+set for the 1DPAMZT model.
+
+
+Interface impacts
+=================
+
+None.
+
+
+Summary of changes
+============================
+No code changes.
+
+There are only json file parameter changes.
+
+
+Review
+====== 
+
+Reviewed by ACIS Ops.
+
+Presented to, and approved by, TWG. 
+
+Full approval given on May 28, 2021.
+
+
+
+Deployment Plan
+===============
+
+Deploy after upload of the first segment of this week's load.
+ 
